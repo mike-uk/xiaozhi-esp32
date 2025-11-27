@@ -1,4 +1,4 @@
-# Custom Development Board Guide指南
+# Custom Development Board Guide
 
 This guide explains how to customize a new development board initialization program for the Xiaozhi AI voice chatbot project. Xiaozhi AI supports over 70 ESP32 series development boards, and the initialization code for each board is located in its corresponding directory.
 
