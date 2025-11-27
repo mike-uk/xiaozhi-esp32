@@ -30,17 +30,10 @@ mkdir main/boards/my-custom-board
 ### 2. Create configuration file
 
 #### config.h
-
-在`config.h`中定义所有的硬件配置，包括:
-
 Define all hardware configurations in `config.h`, including:
-
 - Audio sampling rate and I2S pin configuration
-
 - Audio codec chip address and I2C pin configuration
-
 - Button and LED pin configuration
-
 - Display parameters and pin configuration
 
 See example (from lichuang-c3-dev):
@@ -51,7 +44,7 @@ See example (from lichuang-c3-dev):
 
 #include <driver/gpio.h>
 
-// 音频配置
+// Audio configuration
 #define AUDIO_INPUT_SAMPLE_RATE  24000
 #define AUDIO_OUTPUT_SAMPLE_RATE 24000
 
@@ -66,10 +59,10 @@ See example (from lichuang-c3-dev):
 #define AUDIO_CODEC_I2C_SCL_PIN  GPIO_NUM_1
 #define AUDIO_CODEC_ES8311_ADDR  ES8311_CODEC_DEFAULT_ADDR
 
-// 按钮配置
+// Button configuration
 #define BOOT_BUTTON_GPIO        GPIO_NUM_9
 
-// 显示屏配置
+// Display configuration
 #define DISPLAY_SPI_SCK_PIN     GPIO_NUM_3
 #define DISPLAY_SPI_MOSI_PIN    GPIO_NUM_5
 #define DISPLAY_DC_PIN          GPIO_NUM_6
@@ -169,7 +162,7 @@ private:
     Button boot_button_;
     LcdDisplay* display_;
 
-    // I2C初始化
+    // I2C initialization
     void InitializeI2c() {
         i2c_master_bus_config_t i2c_bus_cfg = {
             .i2c_port = I2C_NUM_0,
@@ -186,7 +179,7 @@ private:
         ESP_ERROR_CHECK(i2c_new_master_bus(&i2c_bus_cfg, &codec_i2c_bus_));
     }
 
-    // SPI初始化（用于显示屏）
+    // SPI initialization (for display screen)
     void InitializeSpi() {
         spi_bus_config_t buscfg = {};
         buscfg.mosi_io_num = DISPLAY_SPI_MOSI_PIN;
@@ -198,7 +191,7 @@ private:
         ESP_ERROR_CHECK(spi_bus_initialize(SPI2_HOST, &buscfg, SPI_DMA_CH_AUTO));
     }
 
-    // 按钮初始化
+    // Button initialization
     void InitializeButtons() {
         boot_button_.OnClick([this]() {
             auto& app = Application::GetInstance();
